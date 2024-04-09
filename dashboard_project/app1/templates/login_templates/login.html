@@ -1,0 +1,44 @@
+{% extends "login_templates/login_base.html" %}
+
+
+{% block login_title_content %} Login Page {% endblock login_title_content %}
+
+
+{% block login_content %}
+
+    <div class='container-fluid'>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 offset-2 mt-5">
+                    <div class='card mt-3 mb-3'>
+                        <div class='card-title'>
+                            <h1 class='text-center text-primary h2 mt-3'>Login</h1>
+                        </div>
+                        <div class="card-body">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div {% if message.tags %} class="alert alert-{{message.tags}} alert-dismissible fade show" {% endif %}>
+                                        <span>{{message}}</span>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
+                                    </div>
+                                
+                                {% endfor %}
+                            {% endif %}
+                            
+                            <form action="" method="POST" novalidate> {% csrf_token %}
+
+                                <label for="login_id">Email Id:</label>
+                                <input type="email" name='enter_email' placeholder='Enter Valid Email ID' class="form-control" required>
+
+                                <button type="submit" class='btn btn-success mt-3 mb-2'>Get an OTP</button>
+                            </form>
+                            <strong>Don't have an account?</strong><a href="{% url 'signup' %}" class='text-primary' style='text-decoration: none;'> Sign Up </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock login_content %}

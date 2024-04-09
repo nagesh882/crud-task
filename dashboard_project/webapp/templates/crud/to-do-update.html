@@ -1,0 +1,43 @@
+{% extends "dashboard_templates/base.html" %}
+
+{% block title_p %} User Data {% endblock title_p %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Update Data</h1>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            {% if exception_error %}
+
+                <h1 class='text-warning text-center h3 mt-5 '>{{exception_error}}</h1>
+
+            {% else %}
+                <form action="{% url 'to_do_update' to_do_update.slug %}" method="POST" novalidate>
+                    {% csrf_token %}
+                
+                    {{form.as_p}}
+
+                    <button type='submit' class='btn btn-success'>Update To Do</button>
+                    <a href="{% url 'userdata' %}" class='btn btn-primary'>Back to Home</a>
+                </form>
+                        
+                        
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+
+
